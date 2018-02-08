@@ -34,6 +34,9 @@ class FormTypeCreator implements FormCreatorInterface
 
     private function getFormType($object, $purpose = null)
     {
+        if (is_null($purpose)) {
+            $purpose = '';
+        }
         $currentPurpose = $purpose ? $purpose.'_' : '';
         $bundle = $this->bundleGuesser->getBundleForClass($object);
         $bundleName = preg_replace('/Bundle$/', '', $bundle->getName());
