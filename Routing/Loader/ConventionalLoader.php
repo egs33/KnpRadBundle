@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Config\FileLocatorInterface;
+use Symfony\Component\Yaml\Yaml;
 
 class ConventionalLoader extends YamlFileLoader
 {
@@ -33,7 +34,7 @@ class ConventionalLoader extends YamlFileLoader
     public function load($file, $type = null)
     {
         $path   = $this->locator->locate($file);
-        $config = $this->yaml->parse($path);
+        $config = Yaml::parseFile($path);
 
         $collection = new RouteCollection();
         $collection->addResource(new FileResource($file));
@@ -353,11 +354,11 @@ class ConventionalLoader extends YamlFileLoader
         }
 
         if (is_string($params)) {
-            $route->setPattern($params);
+            $route->setPath($params);
         }
         if (is_array($params)) {
             if (isset($params['pattern'])) {
-                $route->setPattern($params['pattern']);
+                $route->setPath($params['pattern']);
             }
             if (isset($params['defaults'])) {
                 $route->setDefaults(array_merge(
