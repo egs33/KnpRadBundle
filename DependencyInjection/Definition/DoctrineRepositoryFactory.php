@@ -10,8 +10,8 @@ class DoctrineRepositoryFactory
     {
         $definition = new Definition();
         $definition->setClass('Doctrine\Common\Persistence\ObjectRepository');
-        $definition->setFactoryService('doctrine');
-        $definition->setFactoryMethod('getRepository');
+        $definition->setFactory('doctrine');
+        $definition->setFactory('getRepository');
         $definition->setArguments(array($className));
 
         return $definition;

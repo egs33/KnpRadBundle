@@ -11,8 +11,8 @@ class DoctrineRepositoryFactorySpec extends ObjectBehavior
         $definition = $this->createDefinition('App\Entity\Cheese');
         $definition->shouldBeAnInstanceOf('Symfony\Component\DependencyInjection\Definition');
 
-        $definition->getFactoryService()->shouldReturn('doctrine');
-        $definition->getFactoryMethod()->shouldReturn('getRepository');
+        $definition->getFactory()->shouldReturn('doctrine');
+        $definition->getFactory()->shouldReturn('getRepository');
         $definition->getArguments()->shouldReturn(array('App\Entity\Cheese'));
         $definition->isPublic()->shouldReturn(true);
     }
