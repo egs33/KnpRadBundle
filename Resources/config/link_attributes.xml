@@ -11,17 +11,17 @@
 
     <services>
         <service id="knp_rad.twig.link_attributes_extension" class="%knp_rad.twig.link_attributes_extension.class%">
-            <argument type="service" id="form.csrf_provider" />
+            <argument type="service" id="security.csrf.token_manager" />
             <argument type="string">%knp_rad.csrf_link.intention%</argument>
             <tag name="twig.extension" />
-            <tag name="remove-when-missing" service="form.csrf_provider" />
+            <tag name="remove-when-missing" service="security.csrf.token_manager" />
         </service>
 
         <service id="knp_rad.csrf.listener" class="%knp_rad.csrf.listener.class%">
-            <argument type="service" id="form.csrf_provider" />
+            <argument type="service" id="security.csrf.token_manager" />
             <argument type="string">%knp_rad.csrf_link.intention%</argument>
             <tag name="kernel.event_listener" event="kernel.request" />
-            <tag name="remove-when-missing" service="form.csrf_provider" />
+            <tag name="remove-when-missing" service="security.csrf.token_manager" />
         </service>
     </services>
 

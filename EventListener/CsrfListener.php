@@ -2,7 +2,8 @@
 
 namespace Knp\RadBundle\EventListener;
 
-use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class CsrfListener
@@ -10,7 +11,7 @@ class CsrfListener
     private $csrfProvider;
     private $intention;
 
-    public function __construct(CsrfProviderInterface $csrfProvider, $intention = 'link')
+    public function __construct(CsrfTokenManagerInterface $csrfProvider, $intention = 'link')
     {
         $this->csrfProvider = $csrfProvider;
         $this->intention    = $intention;
@@ -30,7 +31,7 @@ class CsrfListener
 
         $token = $request->request->get('_link_token');
 
-        if (!$this->csrfProvider->isCsrfTokenValid($this->intention, $token)) {
+        if (!$this->csrfProvider->isTokenValid(new CsrfToken($this->intention, $token))) {
             throw new \InvalidArgumentException(
                 'The CSRF token is invalid. Please submit a request with a valid csrf token.'
             );

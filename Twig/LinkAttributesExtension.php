@@ -2,14 +2,14 @@
 
 namespace Knp\RadBundle\Twig;
 
-use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class LinkAttributesExtension extends \Twig_Extension
 {
     private $csrfProvider;
     private $intention;
 
-    public function __construct(CsrfProviderInterface $csrfProvider, $intention = 'link')
+    public function __construct(CsrfTokenManagerInterface $csrfProvider, $intention = 'link')
     {
         $this->csrfProvider = $csrfProvider;
         $this->intention    = $intention;
@@ -43,6 +43,6 @@ class LinkAttributesExtension extends \Twig_Extension
 
     public function getCsrf()
     {
-        return $this->csrfProvider->generateCsrfToken($this->intention);
+        return $this->csrfProvider->getToken($this->intention)->getValue();
     }
 }
