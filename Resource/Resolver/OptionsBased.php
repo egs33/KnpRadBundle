@@ -21,11 +21,9 @@ class OptionsBased implements ResourceResolver
         $this->optionsResolver = new OptionsResolver;
         $this->optionsResolver->setRequired(array('service', 'method'));
         $this->optionsResolver->setDefaults(array('arguments' => array()));
-        $this->optionsResolver->setAllowedTypes(array(
-            'service'   => 'string',
-            'method'    => 'string',
-            'arguments' => 'array',
-        ));
+        $this->optionsResolver->setAllowedTypes('service', 'string');
+        $this->optionsResolver->setAllowedTypes('method', 'string');
+        $this->optionsResolver->setAllowedTypes('arguments', 'array');
     }
 
     public function resolveResource(Request $request, array $options)

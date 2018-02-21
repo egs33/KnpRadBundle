@@ -16,8 +16,9 @@ class ArgumentResolver
         $this->requestManipulator = $requestManipulator ?: new RequestManipulator();
 
         $this->optionsResolver = new OptionsResolver();
-        $this->optionsResolver->setOptional(array('name', 'value'));
-        $this->optionsResolver->setAllowedTypes(array('name' => 'string', 'value' => 'string'));
+        $this->optionsResolver->setDefined(array('name', 'value'));
+        $this->optionsResolver->setAllowedTypes('name','string');
+        $this->optionsResolver->setAllowedTypes('value','string');
     }
 
     public function resolveArgument(Request $request, array $options)
