@@ -383,17 +383,29 @@ class ConventionalLoader extends YamlFileLoader
             $this->getRouteName($bundle, $class, 'index') => new Route(
                 '/',
                 array('_controller' => sprintf('%s:%s:index', $bundle, $class)),
-                array('_method' => 'GET')
+                array('_method' => 'GET'),
+                [],
+                '',
+                [],
+                ['GET']
             ),
             $this->getRouteName($bundle, $class, 'new') => new Route(
                 '/new',
                 array('_controller' => sprintf('%s:%s:new', $bundle, $class)),
-                array('_method' => 'GET')
+                array('_method' => 'GET'),
+                [],
+                '',
+                [],
+                ['GET']
             ),
             $this->getRouteName($bundle, $class, 'create') => new Route(
                 '/',
                 array('_controller' => sprintf('%s:%s:new', $bundle, $class)),
-                array('_method' => 'POST')
+                array('_method' => 'POST'),
+                [],
+                '',
+                [],
+                ['POST']
             ),
         );
     }
@@ -403,7 +415,11 @@ class ConventionalLoader extends YamlFileLoader
         return new Route(
             '/'.$action,
             array('_controller' => sprintf('%s:%s:%s', $bundle, $class, $action)),
-            array('_method' => 'GET')
+            array('_method' => 'GET'),
+            [],
+            '',
+            [],
+            ['GET']
         );
     }
 
@@ -413,22 +429,38 @@ class ConventionalLoader extends YamlFileLoader
             $this->getRouteName($bundle, $class, 'show') => new Route(
                 '/{id}',
                 array('_controller' => sprintf('%s:%s:show', $bundle, $class)),
-                array('_method' => 'GET')
+                array('_method' => 'GET'),
+                [],
+                '',
+                [],
+                ['GET']
             ),
             $this->getRouteName($bundle, $class, 'edit') => new Route(
                 '/{id}/edit',
                 array('_controller' => sprintf('%s:%s:edit', $bundle, $class)),
-                array('_method' => 'GET')
+                array('_method' => 'GET'),
+                [],
+                '',
+                [],
+                ['GET']
             ),
             $this->getRouteName($bundle, $class, 'update') => new Route(
                 '/{id}',
                 array('_controller' => sprintf('%s:%s:edit', $bundle, $class)),
-                array('_method' => 'PUT')
+                array('_method' => 'PUT'),
+                [],
+                '',
+                [],
+                ['PUT']
             ),
             $this->getRouteName($bundle, $class, 'delete') => new Route(
                 '/{id}',
                 array('_controller' => sprintf('%s:%s:delete', $bundle, $class)),
-                array('_method' => 'DELETE')
+                array('_method' => 'DELETE'),
+                [],
+                '',
+                [],
+                ['DELETE']
             ),
         );
     }
@@ -438,7 +470,11 @@ class ConventionalLoader extends YamlFileLoader
         return new Route(
             '/{id}/'.$action,
             array('_controller' => sprintf('%s:%s:%s', $bundle, $class, $action)),
-            array('_method' => 'PUT')
+            array('_method' => 'PUT'),
+            [],
+            '',
+            [],
+            ['PUT']
         );
     }
 
