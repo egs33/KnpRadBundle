@@ -3,13 +3,12 @@
 namespace Knp\RadBundle\Twig;
 
 use Twig_Node;
-use Twig_NodeInterface;
 use Twig_Node_Expression;
 use Twig_Compiler;
 
 class FlashesNode extends Twig_Node
 {
-    public function __construct(Twig_Node_Expression $types = null, Twig_Node_Expression $catalog = null, Twig_NodeInterface $body, $lineno)
+    public function __construct(Twig_Node_Expression $types = null, Twig_Node_Expression $catalog = null, Twig_Node $body, $lineno)
     {
         $nodes = array('body' => $body);
         if (null !== $types) {
